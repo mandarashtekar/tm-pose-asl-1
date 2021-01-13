@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Video Conference Page</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<!-- ************* CONTAINER - START ************* -->
+	<div id="container" class="site">
+		<div id="maincontent" class="main cf">
+            <section class="top">
+            	<!-- ************* SIDE NAV - START ************* -->
+              	<aside class="participants">
+	                <h2 id="rosterheading">Participants</h2>
+	                <div id="rosterlist" class="rosterlist">
+	                  	<ul id="rosterul">
+	                  	</ul>
+	                  	<!-- Select Peripheral - START -->
+	                  	<div id="selectPeripheral" class="main site join" style="display:none;">
+				            <div class="select">
+				                <label for="videoSource">Video source: </label><select id="videoSource"></select>
+				            </div>
+				            <div class="select">
+				                <label for="audioSource">Mic source: </label><select id="audioSource"></select>
+				            </div>
+				            <div class="select">
+				                <label for="speakerSource">Speaker source: </label><select id="speakerSource"></select>
+				            </div>
+				        </div>
+				        <!-- Select Peripheral - END -->
+	                </div>
+
+	                <!-- SIP Dial Out - START -->
+	                <div id="sipDialOut-container" class="site join" style="visibility:hidden;">
+	                    <!-- <form onSubmit="return sipDialOut();"> -->
+	                    <h2> Invite by Phone </h2>
+	                    <input type="text" value="" name="sipDialOut" id="id_join" placeholder="Enter 10 digit phone number" maxlength="10" class="webrtcinput" style="display:block;">
+	                    <input type="button" value="Call" name="join" id="id_join" class="webrtcbutton" onClick="sipDialOut();" style="display:block; width:100%;">
+	                    <!-- </form> -->
+	                </div>
+	                <!-- SIP Dial Out - END -->
+	                <!-- Media Stats - START -->
+	                <div id="info-button-container" class="site join">
+	                    <input type="button" value="Info" name="join" id="info-button" class="webrtcbutton" onClick="getMediaStats();" style="display:block; width:100%;">
+	                </div>
+	                <!-- Media Stats - END -->
+              	</aside>
+              	<!-- ************* SIDE NAV - END ************* -->
+              	<!-- ************* VIDEO CONTAINER - START ************* -->
+              	<div id="videocontainer" class="videocontainer">
+                	<video width="100%" height="100%" id="video" autoplay="autoplay" playsinline="playsinline"></video>
+                	<canvas id="canvas" width="200" height="100" style="border:1px solid red; position:absolute; top:0; left:0; width:200px; height:auto"></canvas>
+                	<div id="selfview" class="selfview">
+	                  	<video id="selfvideo" width="480" height="320" autoplay="autoplay" playsinline="playsinline">
+	                  	</video>
+	                </div>
+
+	                <!-- <center>
+	                  	<canvas id="canvas" style="width:100%; height:100%; z-index:9999;"></canvas>
+	                </center> -->
+
+	                <!-- <div id="stat-window-container" style="position:absolute; top:100px; left:50px; color:white; display:none;">
+	                    <table id="stat-window">
+	                        <tr>
+	                            <th> Outgoing Audio </th>
+	                            <th> Outgoing Video </th>
+	                            <th> Input Audio </th>
+	                            <th> Input Video </th>
+	                        </tr>
+	                        <tr>
+	                            <td></td>
+	                            <td></td>
+	                            <td></td>
+	                            <td></td>
+	                        </tr>
+	                    </table>
+                	</div> -->
+              	</div>
+              	<!-- ************* VIDEO CONTAINER - END ************* -->
+            </section>
+
+            <!-- ************* FOOTER - START ************* -->
+            <footer id="controls" class="controls cf">
+              	<ul>
+	                <!-- <li><a id="id_selfview" class="webrtcbutton btn-selfview" onclick="toggleSelfview();">Show Selfview</a></li> -->
+	                <li><a id="id_muteaudio" class="webrtcbutton btn-audio" onclick="muteAudioStreams();">Mute Audio</a></li>
+	                <li><a id="id_mutevideo" class="webrtcbutton btn-video" onclick="muteVideoStreams();">Mute Video</a></li>
+	                <li><a id="id_fullscreen" class="webrtcbutton btn-fullscreen inactive" onclick="goFullscreen();">Fullscreen</a></li>
+	                <li style="display:none;"><a id="id_screenshare" class="webrtcbutton btn-presentscreen" onclick="presentScreen();">Present Screen</a></li>
+	                <li style="display:none;"><a id="id_presentation" class="webrtcbutton btn-presentation inactive" onclick="togglePresentation();">No Presentation Active</a></li>
+
+	            	<li><a id="blur-btn" class="webrtcbutton">Blur Video</a></li>
+	            	<li><a id="unblur-btn" class="webrtcbutton" hidden>Unblur Video</a></li>
+
+	                <li><a id="id_disconnect" class="webrtcbutton btn-disconnect" onclick="disconnect();">Disconnect</a></li>
+              	</ul>
+            </footer>
+            <!-- ************* FOOTER - END ************* -->
+        </div>
+	</div>
+	<!-- ************* CONTAINER - END ************* -->
+	<style>
+        video {
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+
+	<!-- <script type="text/javascript" src="js/pexrtc.js"></script> -->
+	<script type="text/javascript" src="js/pexrtcV20.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/webui.js"></script>
+
+	<!-- Tensor Flow body-pix -->
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    <!-- Tensor Flow body-pix -->
+
+</body>
+</html>

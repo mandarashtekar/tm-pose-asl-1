@@ -1,0 +1,65 @@
+<!--
+  Pexip-Sample-Personal
+
+  This is a simplified version of Pexip sample code
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	<title>Pexip Sample Simplified</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="js/index.js" async></script>
+</head>
+<body>
+	<div id="container" class="site">
+		<div id="enterDetailsTitle" class="main site join" style="padding:20px 0;">
+			<h1 style="padding:10px 0; color:orange;"> Pexip Sample </h1>
+		</div>
+		<div id="enterDetails" class="main site join">
+			<h3> Please enter details here: </h3>
+        	<label for="id_alias" class="vh">Enter the conference alias</label>
+        	<input type="text" id="id_alias" name="alias" value="m.ncal.med.0.0.1111.2222" placeholder="Enter the conference alias" class="webrtcinput" required>
+
+        	<label for="id_name" class="vh">Enter your name</label>
+        	<input type="text" id="id_name" name="name" value="John Doe" placeholder="Enter your name" required class="webrtcinput">
+
+            <select name="bandwidth" class="webrtcinput" id="id_bandwidth">
+                <option value="1920">Maximum Bandwidth (1920kbps)</option>
+                <option value="1280" selected>High Bandwidth (1280kbps)</option>
+                <option value="576">Medium Bandwidth (576kbps)</option>
+                <option value="192">Low Bandwidth (192kbps)</option>
+            </select>
+            
+            <div id="selectrole" class="main site join" style="margin-top:20px;">
+		        <h3>Select your role for this conference:</h3>
+		        <!-- <form method="POST" action="videoconf.html"> -->
+		        <form>
+		            <div class="cf">
+		                <label><input type="radio" name="role" id="id_host" class="webrtcinput" value="2"> Host </label>
+		            </div>
+		            <div class="cf">
+		                <label><input type="radio" name="role" id="id_guest" class="webrtcinput" value="1"> Guest </label>
+		            </div>
+		        </form>
+		    </div>
+            <div id="pinentry" class="main site join hidden" style="margin-top:20px;">
+            	<h3>Enter the conference PIN:</h3>
+		        <input type="password" value="2222" name="pin" id="id_pin" placeholder="Enter the conference PIN" class="webrtcinput" required>
+		    </div>
+
+	 		<input type="submit" value="Join Conference" name="join" id="join-conf" class="webrtcbutton">
+	    </div>
+	</div>
+</body>
+
+</head>
